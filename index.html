@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMAVA BUILDING CLEANING AND CONCRETE FLOORS | Professional Construction & Maintenance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        accent: '#2563eb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* --- LOGO COLOR & MOTION ANIMATION --- */
+        @keyframes logoColorShift {
+            0% { color: #1e3a8a; transform: scale(1); }
+            33% { color: #2563eb; transform: scale(1.01); }
+            66% { color: #3b82f6; transform: scale(1); }
+            100% { color: #1e3a8a; transform: scale(1); }
+        }
+        .animate-logo {
+            animation: logoColorShift 4s infinite ease-in-out;
+            display: inline-block;
+        }
+        .dark .animate-logo {
+            animation: logoColorShiftDark 4s infinite ease-in-out;
+        }
+        @keyframes logoColorShiftDark {
+            0% { color: #60a5fa; transform: scale(1); }
+            33% { color: #93c5fd; transform: scale(1.01); }
+            66% { color: #ffffff; transform: scale(1); }
+            100% { color: #60a5fa; transform: scale(1); }
+        }
+
+        .blueprint-lines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.05;
+        }
+        .dark .blueprint-lines { opacity: 0.1; }
+        .line-anim {
+            position: absolute;
+            background: currentColor;
+            animation: drift 20s infinite linear;
+        }
+        @keyframes drift {
+            from { transform: rotate(0deg) translate(0, 0); }
+            to { transform: rotate(360deg) translate(20px, 20px); }
+        }
+
+        .shine-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+        .shine-card:hover::before {
+            left: 150%;
+        }
+
+        .magnetic {
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .scroll-skew {
+            transition: transform 0.1s ease;
+            will-change: transform;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .premium-card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+        }
+        .dark .premium-card-shadow {
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            background-color: #25d366;
+            color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 1000; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(5deg); }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .dark .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-bottom: 1.2rem;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+
+    <!-- Blueprint Lines Background -->
+    <div class="blueprint-lines text-slate-200 dark:text-blue-500/20">
+        <div class="line-anim" style="width: 1px; height: 300px; left: 20%; top: 10%;"></div>
+        <div class="line-anim" style="width: 400px; height: 1px; left: 50%; top: 40%;"></div>
+        <div class="line-anim" style="width: 2px; height: 150px; right: 10%; bottom: 20%;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-slate-200/50 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex flex-col group cursor-pointer max-w-[200px] md:max-w-none">
+                        <span class="text-lg md:text-xl font-black leading-none tracking-tighter animate-logo uppercase">AMAVA BUILDING CLEANING</span>
+                        <span class="text-[8px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">AND CONCRETE FLOORS</span>
+                    </div>
+                </div>
+                <!-- Headers -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="text-[10px] font-black hover:text-blue-600 transition uppercase tracking-widest">Home</a>
+                    <a href="#services" class="text-[10px] font-black hover:text-blue-600 transition uppercase tracking-widest">Services</a>
+                    <a href="#about" class="text-[10px] font-black hover:text-blue-600 transition uppercase tracking-widest">About Us</a>
+                    <a href="#contact" class="text-[10px] font-black hover:text-blue-600 transition uppercase tracking-widest">Contacts</a>
+                    
+                    <button id="theme-toggle" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 transition-all hover:scale-110">
+                        <i id="theme-icon" class="fa-solid fa-moon text-xs"></i>
+                    </button>
+
+                    <a href="#contact" class="bg-slate-900 dark:bg-blue-600 text-white px-5 py-2.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] transition-all hover:scale-105 active:scale-95 magnetic whitespace-nowrap">Start Project</a>
+                </div>
+                <div class="md:hidden flex items-center gap-4">
+                    <button id="theme-toggle-mobile" class="p-2 text-slate-600 dark:text-yellow-400">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button id="menu-toggle" class="p-2"><i class="fa-solid fa-bars-staggered text-2xl"></i></button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-slate-900 z-[60] flex flex-col items-center justify-center space-y-8 md:hidden hidden">
+            <button id="menu-close" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
+            <a href="#home" class="text-xl font-black text-white hover:text-blue-500">HOME</a>
+            <a href="#services" class="text-xl font-black text-white hover:text-blue-500">SERVICES</a>
+            <a href="#about" class="text-xl font-black text-white hover:text-blue-500">ABOUT US</a>
+            <a href="#contact" class="text-xl font-black text-blue-400">CONTACTS</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-[85vh] flex items-center pt-20 overflow-hidden bg-slate-950">
+        <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-950/70 to-transparent z-10"></div>
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-50 scroll-skew" id="hero-video">
+                <source src="background.mp4" type="video/mp4">
+                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=2070" class="w-full h-full object-cover opacity-50" alt="Construction">
+            </video>
+        </div>
+        
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="max-w-4xl hero-animate">
+                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400 text-[9px] font-black uppercase tracking-widest mb-6 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                    CSD Registered & B-BBEE Level 1
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black text-white leading-[0.9] mb-6 uppercase tracking-tighter">
+                    Built To <br><span class="text-blue-500">Endure.</span>
+                </h1>
+                <p class="text-lg text-slate-400 mb-8 leading-relaxed font-medium max-w-2xl">
+                    Engineering stability through specialized civil construction, concrete surface technology, and certified property maintenance.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#services" class="bg-blue-600 text-white px-8 py-3.5 rounded-full font-black uppercase tracking-widest text-[9px] magnetic text-center shadow-lg shadow-blue-500/20">Explore Expertise</a>
+                    <a href="#contact" class="border-2 border-slate-700 text-white px-8 py-3.5 rounded-full font-black uppercase tracking-widest text-[9px] transition-all hover:bg-white hover:text-slate-900 hover:border-white text-center magnetic">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="bg-slate-50 dark:bg-slate-900 py-6 border-b border-slate-100 dark:border-slate-800 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center items-center">
+                <div class="reveal">
+                    <span class="block text-2xl font-black text-blue-900 dark:text-blue-400"><span class="counter" data-target="100">0</span>%</span>
+                    <span class="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Woman Owned</span>
+                </div>
+                <div class="reveal">
+                    <span class="block text-2xl font-black text-blue-900 dark:text-blue-400"><span class="counter" data-target="50">0</span>+</span>
+                    <span class="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Active Sites</span>
+                </div>
+                <div class="reveal">
+                    <span class="block text-2xl font-black text-blue-900 dark:text-blue-400">LVL <span class="counter" data-target="1">0</span></span>
+                    <span class="text-[8px] font-bold text-slate-500 uppercase tracking-widest">B-BBEE Verified</span>
+                </div>
+                <div class="reveal">
+                    <span class="block text-lg font-black text-slate-900 dark:text-white uppercase leading-none">CSD REGD</span>
+                    <span class="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Gov Supplier</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-12 bg-white dark:bg-slate-950 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 reveal">
+                <h2 class="text-blue-600 text-[10px] font-black uppercase tracking-[0.4em] mb-2">Core Capabilities</h2>
+                <h3 class="text-4xl md:text-5xl font-black dark:text-white uppercase tracking-tighter">Our Expertise</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Service Card 1 -->
+                <div class="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-2xl premium-card-shadow border border-slate-100 dark:border-slate-800 reveal shine-card transition-colors">
+                    <div class="mb-6 w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-helmet-safety text-2xl text-blue-600"></i>
+                    </div>
+                    <h4 class="text-xl font-black mb-4 uppercase tracking-tight">Civil Engineering</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Specialized concrete floor engineering and structural surface preparation for high-load industrial developments.
+                    </p>
+                    <ul class="text-[9px] font-black text-slate-400 uppercase tracking-widest space-y-2">
+                        <li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i> Industrial Polishing</li>
+                        <li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i> Reinforced Slabs</li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-2xl premium-card-shadow border border-slate-100 dark:border-slate-800 reveal shine-card transition-colors">
+                    <div class="mb-6 w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-faucet-drip text-2xl text-blue-600"></i>
+                    </div>
+                    <h4 class="text-xl font-black mb-4 uppercase tracking-tight">Maintenance</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Comprehensive facility preservation including certified plumbing maintenance and building envelope repairs.
+                    </p>
+                    <ul class="text-[9px] font-black text-slate-400 uppercase tracking-widest space-y-2">
+                        <li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i> Plumbing Certs</li>
+                        <li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i> 24/7 Asset Care</li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-2xl premium-card-shadow border border-slate-100 dark:border-slate-800 reveal shine-card transition-colors">
+                    <div class="mb-6 w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-truck-ramp-box text-2xl text-blue-600"></i>
+                    </div>
+                    <h4 class="text-xl font-black mb-4 uppercase tracking-tight">Supply Chain</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Logistical procurement of high-performance cement additives and site safety inventory for major contracts.
+                    </p>
+                    <ul class="text-[9px] font-black text-slate-400 uppercase tracking-widest space-y-2">
+                        <li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i> Bulk Admixtures</li>
+                        <li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i> PPE Procurement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-12 bg-slate-50 dark:bg-slate-900 overflow-hidden relative transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-10 items-center">
+                <div class="lg:w-1/2 reveal">
+                    <div class="relative premium-card-shadow overflow-hidden rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000" class="w-full h-[350px] object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Construction Profile">
+                        <div class="absolute bottom-4 left-4 right-4 p-4 bg-blue-900/90 backdrop-blur-md text-white rounded-xl text-center">
+                            <span class="text-[8px] font-black uppercase tracking-[0.3em]">Corporate ID: 2021/133989/07</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="text-blue-600 text-[10px] font-black uppercase tracking-[0.5em] mb-2">Corporate Profile</h2>
+                    <h3 class="text-3xl font-black text-slate-900 dark:text-white mb-4 uppercase tracking-tighter">Stability Redefined</h3>
+                    <div class="space-y-4 text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        <p>Established in 2021, <strong>AMAVA BUILDING CLEANING AND CONCRETE FLOORS</strong> is a 100% Black Woman-Owned entity led by <strong>Nomava Lovenia Mboniswa</strong>. We bridge the gap between emerging development needs and world-class engineering.</p>
+                        <p>Our status as a CSD registered supplier ensures full transparency and eligibility for large-scale municipal and government projects, while our B-BBEE Level 1 status provides maximum procurement benefits.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-center">
+                            <h4 class="text-[9px] font-black text-blue-600 uppercase mb-1">Our Mission</h4>
+                            <p class="text-[10px] font-bold leading-tight">Delivering precision engineering to power growth.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-center">
+                            <h4 class="text-[9px] font-black text-blue-600 uppercase mb-1">Our Vision</h4>
+                            <p class="text-[10px] font-bold leading-tight">To be SA's most trusted surface expert.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Centered & Compact) -->
+    <section class="py-12 bg-white dark:bg-slate-950 transition-colors duration-500">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-6 reveal">
+                <h2 class="text-blue-600 text-[9px] font-black uppercase tracking-[0.4em] mb-1">Discovery</h2>
+                <h3 class="text-3xl font-black dark:text-white uppercase tracking-tighter">Frequently Asked</h3>
+            </div>
+            <div class="space-y-1 reveal">
+                <div class="faq-item">
+                    <button class="faq-btn w-full py-4 flex justify-between items-center text-left focus:outline-none group">
+                        <span class="text-xs font-black uppercase tracking-tight text-slate-700 dark:text-slate-200 group-hover:text-blue-600 transition-colors">Are you registered on the CSD?</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-blue-600 transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Yes, we are fully registered on the National Treasury's Central Supplier Database (Reg: 2021/133989/07). Compliant for all municipal and provincial tenders.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn w-full py-4 flex justify-between items-center text-left focus:outline-none group">
+                        <span class="text-xs font-black uppercase tracking-tight text-slate-700 dark:text-slate-200 group-hover:text-blue-600 transition-colors">What is your B-BBEE rating?</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-blue-600 transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                            AMAVA BUILDING CLEANING AND CONCRETE FLOORS is a Level 1 B-BBEE contributor. 100% Black Woman-owned, offering maximum points on procurement scorecards.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn w-full py-4 flex justify-between items-center text-left focus:outline-none group">
+                        <span class="text-xs font-black uppercase tracking-tight text-slate-700 dark:text-slate-200 group-hover:text-blue-600 transition-colors">Which areas do you service?</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-blue-600 transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Based in Cape Town, we primarily service the Western Cape. We have capacity to mobilize nationally for major supply or civil contracts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & Form Section (Centered & Compact) -->
+    <section id="contact" class="py-12 bg-slate-50 dark:bg-slate-900 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Compact Contact Info Bar -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 reveal">
+                <div class="flex gap-4 items-center p-4 bg-white dark:bg-slate-800 rounded-xl premium-card-shadow border border-slate-100 dark:border-slate-700 justify-center">
+                    <i class="fa-solid fa-phone text-blue-600"></i>
+                    <p class="text-sm font-black">073 866 3711</p>
+                </div>
+                <div class="flex gap-4 items-center p-4 bg-white dark:bg-slate-800 rounded-xl premium-card-shadow border border-slate-100 dark:border-slate-700 justify-center">
+                    <i class="fa-solid fa-envelope text-blue-600"></i>
+                    <p class="text-xs font-bold">nomavamboniswa05@gmail.com</p>
+                </div>
+                <div class="flex gap-4 items-center p-4 bg-white dark:bg-slate-800 rounded-xl premium-card-shadow border border-slate-100 dark:border-slate-700 justify-center">
+                    <i class="fa-solid fa-location-dot text-blue-600"></i>
+                    <p class="text-xs font-bold">Bloekombos, Cape Town</p>
+                </div>
+            </div>
+
+            <!-- Professional Centered Form -->
+            <div class="max-w-xl mx-auto reveal bg-white dark:bg-slate-800 p-8 rounded-2xl premium-card-shadow border border-slate-100 dark:border-slate-700">
+                <h4 class="text-lg font-black uppercase mb-6 flex items-center justify-center gap-3">
+                    <span class="w-6 h-1 bg-blue-600 inline-block"></span>
+                    Project Brief
+                    <span class="w-6 h-1 bg-blue-600 inline-block"></span>
+                </h4>
+                <form id="contact-form" class="space-y-5">
+                    <div class="relative">
+                        <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Full Name</label>
+                        <div class="flex items-center border-b border-slate-200 dark:border-slate-700 focus-within:border-blue-600 transition-colors">
+                            <i class="fa-solid fa-user text-slate-300 mr-3 text-xs"></i>
+                            <input type="text" required class="w-full py-2 bg-transparent outline-none font-bold text-xs">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="relative">
+                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Email</label>
+                            <div class="flex items-center border-b border-slate-200 dark:border-slate-700 focus-within:border-blue-600 transition-colors">
+                                <i class="fa-solid fa-envelope text-slate-300 mr-3 text-xs"></i>
+                                <input type="email" required class="w-full py-2 bg-transparent outline-none font-bold text-xs">
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Phone</label>
+                            <div class="flex items-center border-b border-slate-200 dark:border-slate-700 focus-within:border-blue-600 transition-colors">
+                                <i class="fa-solid fa-phone text-slate-300 mr-3 text-xs"></i>
+                                <input type="tel" required class="w-full py-2 bg-transparent outline-none font-bold text-xs">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Inquiry</label>
+                        <div class="flex items-start border-b border-slate-200 dark:border-slate-700 focus-within:border-blue-600 transition-colors">
+                            <i class="fa-solid fa-message text-slate-300 mt-2.5 mr-3 text-xs"></i>
+                            <textarea rows="2" required class="w-full py-2 bg-transparent outline-none font-bold text-xs resize-none"></textarea>
+                        </div>
+                    </div>
+                    <button class="w-full bg-slate-900 dark:bg-blue-600 text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[9px] magnetic transition-all active:scale-95 shadow-xl hover:shadow-blue-500/20">Submit Brief</button>
+                </form>
+                <div id="form-success" class="hidden text-center py-10 bg-blue-50/50 dark:bg-blue-900/10 rounded-xl">
+                    <i class="fa-solid fa-circle-check text-4xl text-blue-600 mb-3"></i>
+                    <h4 class="text-xl font-black uppercase tracking-tighter">Inquiry Logged</h4>
+                    <p class="text-slate-500 font-bold uppercase tracking-widest text-[8px] mt-2">Expect a response within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-900 py-8 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col items-center md:items-start">
+                <span class="text-xl font-black text-slate-900 dark:text-white leading-none tracking-tighter animate-logo uppercase">AMAVA BUILDING CLEANING</span>
+                <span class="text-[8px] font-black text-blue-600 uppercase tracking-[0.3em] mt-1">AND CONCRETE FLOORS</span>
+            </div>
+            <div class="text-center">
+                <p class="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em]">CSD REGISTERED | Reg: 2021/133989/07</p>
+                <p class="text-[8px] font-bold text-slate-300">&copy; 2024 AMAVA BUILDING CLEANING AND CONCRETE FLOORS (Pty) Ltd.</p>
+            </div>
+            <div class="flex gap-3">
+                <a href="#" class="w-8 h-8 rounded-full border border-slate-100 dark:border-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fa-brands fa-linkedin-in text-xs"></i></a>
+                <a href="#" class="w-8 h-8 rounded-full border border-slate-100 dark:border-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/27738663711?text=Hello,%20I%20would%20like%20to%20enquire%20about%20your%20construction%20or%20maintenance%20services." 
+       target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeIconMobile = themeToggleMobile.querySelector('i');
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            themeIcon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            themeIconMobile.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        themeToggle.onclick = toggleTheme;
+        themeToggleMobile.onclick = toggleTheme;
+
+        let currentScroll = 0;
+        let skewAmount = 0;
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const skewTarget = (scroll - currentScroll) * 0.1;
+            skewAmount += (skewTarget - skewAmount) * 0.1;
+            const heroVideo = document.getElementById('hero-video');
+            if(heroVideo) {
+                heroVideo.style.transform = `translateY(${scroll * 0.3}px) skewY(${Math.min(Math.max(skewAmount, -3), 3)}deg)`;
+            }
+            currentScroll = scroll;
+        });
+
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0px, 0px)`;
+            });
+        });
+
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.onclick = () => {
+                const item = btn.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if(!isActive) item.classList.add('active');
+            };
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    const counters = entry.target.querySelectorAll('.counter');
+                    if(counters.length) startCounters(counters);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        function startCounters(counters) {
+            counters.forEach(counter => {
+                if(counter.dataset.done) return;
+                counter.dataset.done = true;
+                const target = +counter.dataset.target;
+                const duration = 1500;
+                const startTime = performance.now();
+                const update = (now) => {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    counter.innerText = Math.floor(progress * target);
+                    if (progress < 1) requestAnimationFrame(update);
+                    else counter.innerText = target;
+                };
+                requestAnimationFrame(update);
+            });
+        }
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.onclick = () => { mobileMenu.classList.remove('hidden'); };
+        menuClose.onclick = () => { mobileMenu.classList.add('hidden'); };
+        mobileMenu.onclick = (e) => { if(e.target.tagName === 'A') mobileMenu.classList.add('hidden'); };
+
+        const form = document.getElementById('contact-form');
+        const success = document.getElementById('form-success');
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+        };
+    </script>
+</body>
+</html>
